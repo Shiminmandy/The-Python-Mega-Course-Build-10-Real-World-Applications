@@ -79,3 +79,40 @@ temp = {'morning': 26, 'noon': 30, 'evening': 20}
 # find length of dictionary
 print(len(temp))  # 3 the length of temp is 3
 print(mean(temp))  # 25.3333333333333
+
+"""
+7. isinstance()
+"""
+print(isinstance(3, int))  # True
+# skip the use of elif
+
+"""
+8. User Input
+"""
+
+
+def describe_weather(temperature):
+    if temperature > 25:
+        return 'Hot'
+    elif 15 <= temperature <= 25:
+        return 'Warm'
+    else:
+        return 'Cold'
+
+
+user_input = input("please enter the temp:")  # users decide the value of temperature
+print(type(user_input))  # <class 'str'>
+# print(describe_weather(user_input))         # TypeError: '>' not supported between instances of 'str' and 'int'
+print(describe_weather(float(user_input)))  # Because the type of temperature is string, we need to use float()
+
+"""
+9.String Formatting
+"""
+user_input = input("Enter your name:")
+reply = "Hello %s!" % user_input  # use more before python 3.6
+reply2 = f"Hello {user_input}"
+reply3 = f'Hello "{user_input}"'  # use more after python 3.6, quotes for special requirement
+print(reply)
+# string formatting with multiple variables
+# "Hello %s %s!" % (user_input1, user_input2)
+# f"Hello {}, {}"
