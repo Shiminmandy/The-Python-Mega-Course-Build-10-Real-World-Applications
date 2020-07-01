@@ -33,5 +33,10 @@ for key, value in phone_numbers.items():
 # while answer != 'n':                         # if input is 'n', the loop will end
 #     answer = input("Enter your answer:")
 # other expression with break and continue
-
+while True:
+    answer = input("Enter your answer:")
+    if answer == 'n':
+        break
+    else:
+        continue
 
