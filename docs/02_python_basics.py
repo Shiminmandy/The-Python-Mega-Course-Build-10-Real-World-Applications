@@ -40,3 +40,18 @@ while True:
     else:
         continue
 
+"""
+13. Building the Maker function
+"""
+# help(str.startswith)
+
+
+def sentence_maker(phrase):
+    interrogative = ("how", "what", "why")    # it should be a tuple inside the built in function str.startwith()
+    capitalized = phrase.capitalize()         # str.title() capitalizes every word's first letter
+    if phrase.startwith(interrogative):       # if it is true that the start of phrase is included in the tuple
+        return "{}?".format(capitalized)
+    else:
+        return "{}.".format(capitalized)
+
+
