@@ -116,3 +116,26 @@ print(reply)
 # string formatting with multiple variables
 # "Hello %s %s!" % (user_input1, user_input2)
 # f"Hello {}, {}"
+
+"""
+10. For Loops
+"""
+temp = [10.1, 15.5, 8.9]
+for temperature in temp:  # we can name whatever we want instead 'temperature'
+    print(round(temperature))  # 10 16 9
+    print('Done')
+for letter in 'hello':
+    print(letter.upper())  # H E L L O
+
+
+# output will be : 10 Done 16 Done 9 Done H E L L O
+# function + for loop
+
+
+def celsius_to_kelvin(cels):
+    return cels + 273.15
+
+
+temp_lst = [8.8, 25, 15.6]
+for temperature in temp_lst:
+    print(celsius_to_kelvin(temperature))       # output would be 281.95 298.15 288.75
