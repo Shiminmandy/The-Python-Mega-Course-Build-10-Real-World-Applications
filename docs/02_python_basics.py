@@ -70,7 +70,7 @@ while True:
         results.append(sentence_maker(user_input))
 
 # print(results)                   # ['How are you?', 'The weather is good.']
-print(" ".join(results))           # How are you? Pretty good.
+print(" ".join(results))  # How are you? Pretty good.
 
 """
 14. List
@@ -80,18 +80,50 @@ temps = [221, 234, 340, 230]
 new_temps = []
 for temp in temps:
     new_temps.append(temp / 10)
-print(new_temps)                   # [22.1, 23.4, 34.0, 23.0]
+print(new_temps)  # [22.1, 23.4, 34.0, 23.0]
 
 # 2. other way to solve
 new_temps = [temp / 10 for temp in temps]
-print(new_temps)                   # [22.1, 23.4, 34.0, 23.0]
+print(new_temps)  # [22.1, 23.4, 34.0, 23.0]
 
 # 3. with if conditional
 temps2 = [221, 234, 340, -100, 230]
-new_temps2 = [temp /10 for temp in temps if temp != -9999]
-print(new_temps2)                  # [22.1, 23.4, 34.0, 23.0]
+new_temps2 = [temp / 10 for temp in temps if temp != -9999]
+print(new_temps2)  # [22.1, 23.4, 34.0, 23.0]
 
 # 4. with if/else conditional
 new_temps3 = [temp / 10 if temp != -100 else 0 for temp in temps2]
-print(new_temps3)                  # [22.1, 23.4, 34.0, 0, 23.0]
+print(new_temps3)  # [22.1, 23.4, 34.0, 0, 23.0]
 
+"""
+15. function with multiple arguments
+"""
+
+
+def area(a, b):  # non-default argument
+    # default argument            def area(a, b = 5)
+    # default argument can't before non-default argument
+    return a * b
+
+
+print(area(b=1, a=3))  # keyword argument, take care of the position
+print(area(1, 2))  # non-keyword argument
+
+
+# 2
+
+# functions with arbitrary number of non-keyword arguments
+def mean(*args):  # whatever name after *, mean multiple argument
+    # return args      # we will get the same with input in the type of tuple
+    return sum(args) / len(args)
+
+
+print(mean(1, 3, 4))
+
+
+# for keyword argument
+def mean(**kwargs):
+    return kwargs
+
+
+print(mean(a=1, b=2, c=3))               # we will get a dictionary {'a': 1, 'b': 2, 'c': 3}

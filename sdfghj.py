@@ -5,3 +5,4 @@
 # @Version:0.0.1
 phrase = 'how are you'
 print(phrase.startswith(("how", "what", "why")))
+phrase.upper()
