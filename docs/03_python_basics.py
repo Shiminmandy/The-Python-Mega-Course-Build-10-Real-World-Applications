@@ -31,3 +31,21 @@ print(content2)
 with open("file/WeatherTemp.py") as newfile:
     content3 = newfile.read()
 print(content3)
+
+"""
+18. writing text to a file
+"""
+with open("file/WeatherTemp.py", 'w') as newfile:
+    newfile.write("hot")
+print(newfile)
+# if the file already exit, the file will cover the origin content
+# if the file does not exit, python will create one in required place
+
+"""
+19.Appending Text to an Existing File
+"""
+with open("file/WeatherTemp.py", 'a+') as newfile2:      # + for updating
+    newfile2.write("\ncold")
+    newfile2.seek(0)                               # because of the cursor, use built in function back to the 0 position
+    get_content = newfile2.read()
+print(get_content)
