@@ -23,7 +23,11 @@ print(content)
 """
 17. Different Filepath
 """
-# if file is in different path, we will get FileNotFound error
-with open("The_Python_Mega_Course/sdfghj.py") as myfile2:
+# if file is in different path(outside), we will get FileNotFound error
+with open("../sdfghj.py") as myfile2:
     content2 = myfile2.read()
 print(content2)
+#  different inner path
+with open("file/WeatherTemp.py") as newfile:
+    content3 = newfile.read()
+print(content3)
