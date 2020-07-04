@@ -44,8 +44,13 @@ print(newfile)
 """
 19.Appending Text to an Existing File
 """
-with open("file/WeatherTemp.py", 'a+') as newfile2:      # + for updating
+with open("file/WeatherTemp.py", 'a+') as newfile2:  # + for updating
     newfile2.write("\ncold")
-    newfile2.seek(0)                               # because of the cursor, use built in function back to the 0 position
+    newfile2.seek(0)  # because of the cursor, use built in function back to the 0 position
     get_content = newfile2.read()
 print(get_content)
+
+"""
+20. Modules
+"""
+# import + modules' name
