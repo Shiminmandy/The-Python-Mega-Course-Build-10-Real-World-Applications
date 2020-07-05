@@ -21,6 +21,6 @@ def translate(word):
 
 def main():
     word = input("Enter word: ")
-    print(word)
+    print(translate(word))
 if __name__ == '__main__':
     main()
