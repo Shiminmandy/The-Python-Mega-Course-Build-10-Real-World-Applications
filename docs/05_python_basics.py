@@ -51,3 +51,9 @@ Third     70
 """
 print(df1.Price.mean())
 # 40.0
+
+
+# read csv file
+df = pandas.read_csv("file/supermarkets.csv")
+print(df)
+
