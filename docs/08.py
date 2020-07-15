@@ -35,7 +35,7 @@ name = list(get_data["NAME"])
 
 
 # make different colors to points
-gidef color_producer(elevation):  # the parameter name is what ever you want
+def color_producer(elevation):  # the parameter name is what ever you want
     if elevation < 1000:
         return 'green'
     elif 1000 < elevation < 3000:
@@ -45,8 +45,15 @@ gidef color_producer(elevation):  # the parameter name is what ever you want
 
 
 for lt, ln, el, name in zip(lat, lon, elev, name):  # for a, b in zip([1,2,3],[4,5,6]), print(a,b) will get 1 4/2 5/ 3 6
-    fg.add_child(
-        folium.Marker(location=[lt, ln], popup=name + '\t' + str(el) + 'm', icon=folium.Icon(color=color_producer(el))))
+    # fg.add_child(folium.Marker(location=[lt, ln], radius=10, popup=name + '\t' + str(el) + 'm', icon=folium.Icon(
+    # color=color_producer(el))))
+    # change marker to circle
+    fg.add_child(folium.CircleMarker(location=[lt, ln], radius=10, popup=name + '\t' + str(el) + 'm',
+                                     fill_color=color_producer(el), color='gray', fill_opacity=0.7))
+
 print(type(el))  # <class 'float'> we need to change to string format in popup window
+
 map1.add_child(fg)
 map1.save("Map1.html")
+print(dir(folium))
+help(folium.CircleMarker)
