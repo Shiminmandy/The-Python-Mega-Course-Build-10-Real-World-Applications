@@ -16,7 +16,7 @@ fg.add_child(folium.Marker(location=[35.2, -90.1], popup="Hi I am a Marker", ico
 # adding points from files/use for loop
 get_data = pandas.read_csv("Volcanoes.txt")
 print(get_data)
-print(type(get_data))       # <class 'pandas.core.frame.DataFrame'>
+print(type(get_data))  # <class 'pandas.core.frame.DataFrame'>
 print(get_data.columns)
 """
 Index(['VOLCANX020', 'NUMBER', 'NAME', 'LOCATION', 'STATUS', 'ELEV', 'TYPE',
@@ -26,7 +26,27 @@ Index(['VOLCANX020', 'NUMBER', 'NAME', 'LOCATION', 'STATUS', 'ELEV', 'TYPE',
 lat = list(get_data["LAT"])
 # print(lat)   get a list of lat
 lon = list(get_data["LON"])
-for lt, ln in zip(lat, lon):    # for a, b in zip([1,2,3],[4,5,6]), print(a,b) will get 1 4/2 5/ 3 6
-    fg.add_child(folium.Marker(location=[lt, ln], popup="Hi I am a Marker", icon=folium.Icon(color='green')))
+# for lt, ln in zip(lat, lon):    # for a, b in zip([1,2,3],[4,5,6]), print(a,b) will get 1 4/2 5/ 3 6
+#     fg.add_child(folium.Marker(location=[lt, ln], popup="Hi I am a Marker", icon=folium.Icon(color='green')))
+
+# popup elevation and name from the file
+elev = list(get_data["ELEV"])
+name = list(get_data["NAME"])
+
+
+# make different colors to points
+gidef color_producer(elevation):  # the parameter name is what ever you want
+    if elevation < 1000:
+        return 'green'
+    elif 1000 < elevation < 3000:
+        return 'orange'
+    else:
+        return 'red'
+
+
+for lt, ln, el, name in zip(lat, lon, elev, name):  # for a, b in zip([1,2,3],[4,5,6]), print(a,b) will get 1 4/2 5/ 3 6
+    fg.add_child(
+        folium.Marker(location=[lt, ln], popup=name + '\t' + str(el) + 'm', icon=folium.Icon(color=color_producer(el))))
+print(type(el))  # <class 'float'> we need to change to string format in popup window
 map1.add_child(fg)
 map1.save("Map1.html")
