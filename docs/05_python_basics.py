@@ -57,3 +57,20 @@ print(df1.Price.mean())
 df = pandas.read_csv("file/supermarkets.csv")
 print(df)
 
+# how to use lambda
+"""
+A lambda function is a small anonymous function
+A lambda function can take any number of arguments, but can only have one expresion
+"""
+x = lambda a: a + 10
+print(x(1))  # we will get 11
+y = lambda a, b: a * b
+print(y(1, 2))  # we will get 2
+
+
+def myfunc(n):
+    return lambda a: a * n
+
+
+mytriper = myfunc(3)  # mytripler = a: a * 3
+print(mytriper(100))  # 300     a = 100
