@@ -50,10 +50,11 @@ for lt, ln, el, name in zip(lat, lon, elev, name):  # for a, b in zip([1,2,3],[4
     # change marker to circle
     fg.add_child(folium.CircleMarker(location=[lt, ln], radius=10, popup=name + '\t' + str(el) + 'm',
                                      fill_color=color_producer(el), color='gray', fill_opacity=0.7))
-
+# adding a GeoJson Polygon layer
+fg.add_child(folium.GeoJson(data=(open('file/world.json', 'r', encoding='utf-8-sig').read())))
 print(type(el))  # <class 'float'> we need to change to string format in popup window
 
 map1.add_child(fg)
 map1.save("Map1.html")
 print(dir(folium))
-help(folium.CircleMarker)
+# help(folium.CircleMarker)
