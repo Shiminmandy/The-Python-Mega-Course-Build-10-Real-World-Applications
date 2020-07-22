@@ -4,6 +4,7 @@
 # @Copyright
 # @Version:0.0.1
 import sqlite3
+import psycopg2
 """
 1. Connect to a database
 2. Create a cursor object
@@ -30,7 +31,7 @@ def insert(item, quantity, price):
     conn.close()
 
 
-insert("Coffee Cup", 10, 5)
+
 
 
 def view():
@@ -42,5 +43,24 @@ def view():
     return rows
 
 
+def delete(item):
+    conn=sqlite3.connect("lite.db")
+    cur=conn.cursor()
+    cur.execute("DELETE FROM store WHERE item=?",(item,))
+    conn.commit()
+    conn.close()
+
+
+def update(quantity,price,item):
+    conn=sqlite3.connect("lite.db")
+    cur=conn.cursor()
+    cur.execute("UPDATE store SET quantity=?, price=? WHERE item=?",(quantity,price,item))
+    conn.commit()
+    conn.close()
+
+# insert("Wine Glass", 8, 10.5)
+# insert("Coffee Cup", 10, 5)
+# delete("Coffee Cup")
+update(11,6,"Wine Glass")
 print(view())
 # [('Coffee Cup', 10, 5.0), ('Coffee Cup', 10, 5.0), ('Coffee Cup', 10, 5.0)]
