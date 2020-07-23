@@ -5,7 +5,7 @@
 # @Version:0.0.1
 import sqlite3
 import psycopg2
-"""
+""" 
 1. Connect to a database
 2. Create a cursor object
 3.Write an SQL query
@@ -61,6 +61,6 @@ def update(quantity,price,item):
 # insert("Wine Glass", 8, 10.5)
 # insert("Coffee Cup", 10, 5)
 # delete("Coffee Cup")
-update(11,6,"Wine Glass")
-print(view())
+# update(11,6,"Wine Glass")
+# print(view())
 # [('Coffee Cup', 10, 5.0), ('Coffee Cup', 10, 5.0), ('Coffee Cup', 10, 5.0)]
