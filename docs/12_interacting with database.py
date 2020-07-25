@@ -3,7 +3,7 @@
 # @Author: Shimin
 # @Copyright
 # @Version:0.0.1
-import sqlite3
+# import sqlite3
 import psycopg2
 """ 
 1. Connect to a database
@@ -13,20 +13,21 @@ import psycopg2
 """
 
 def create_table():
-    conn = sqlite3.connect("lite.db")
+    conn = psycopg2.connect("dbname='database1' user='postgres' password='postgres123' host='localhost' port='5432'")
     # if you dont have this file the database will create one for u and the connection will be established
     cur = conn.cursor()  # cursor object
-    cur.execute("CREATE TABLE store (item TXET, quantity INTEGER, price REAL)")
+    cur.execute("CREATE TABLE IF NOT EXISTS store (item TEXT, quantity INTEGER, price REAL)")
     # enter SQL code inside the brackets, SQL code always goes inside quotes
     conn.commit()
     conn.close()
 
 
 def insert(item, quantity, price):
-    conn = sqlite3.connect("lite.db")
+    conn = psycopg2.connect("dbname='database1' user='postgres' password='postgres123' host='localhost' port='5432'")
     cur = conn.cursor()
     # cur.execute("INSERT INTO store VALUES ('Wine Glass', 8,10.5)") 'Wine Glass' is TEXT, 8 is INTEGER, 10.5 is  REAL
-    cur.execute("INSERT INTO store VALUES (?,?,?)", (item, quantity, price))
+    # cur.execute("INSERT INTO store VALUES ('%s','%s','%s')" % (item, quantity, price))  this is not a good way
+    cur.execute("INSERT INTO store VALUES (%s,%s,%s)", (item, quantity, price))
     conn.commit()
     conn.close()
 
@@ -35,7 +36,7 @@ def insert(item, quantity, price):
 
 
 def view():
-    conn = sqlite3.connect("lite.db")
+    conn = psycopg2.connect("dbname='database1' user='postgres' password='postgres123' host='localhost' port='5432'")
     cur = conn.cursor()
     cur.execute("SELECT * FROM store")
     rows = cur.fetchall()
@@ -44,20 +45,29 @@ def view():
 
 
 def delete(item):
-    conn=sqlite3.connect("lite.db")
+    conn=psycopg2.connect("dbname='database1' user='postgres' password='postgres123' host='localhost' port='5432'")
     cur=conn.cursor()
-    cur.execute("DELETE FROM store WHERE item=?",(item,))
+    cur.execute("DELETE FROM store WHERE item=%s",(item,))
     conn.commit()
     conn.close()
 
 
 def update(quantity,price,item):
-    conn=sqlite3.connect("lite.db")
+    conn=psycopg2.connect("dbname='database1' user='postgres' password='postgres123' host='localhost' port='5432'")
     cur=conn.cursor()
-    cur.execute("UPDATE store SET quantity=?, price=? WHERE item=?",(quantity,price,item))
+    cur.execute("UPDATE store SET quantity=%s, price=%s WHERE item=%s",(quantity,price,item))
     conn.commit()
     conn.close()
 
+
+create_table()
+# insert("Orange", 10, 15)
+"""
+go to 'tool'-->Query Tool, print 'SELECT * FROM store
+"""
+print(view())
+# delete("Orange")
+update(20, 15.0, "Apple")
 # insert("Wine Glass", 8, 10.5)
 # insert("Coffee Cup", 10, 5)
 # delete("Coffee Cup")
