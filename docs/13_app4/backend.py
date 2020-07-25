@@ -13,3 +13,6 @@ def connect():
         "CREATE TABLE IF NOT EXISTS book (id INTEER PRIMARY KEY, title text, author text, year integer, isbn integer)")
     conn.commit()
     conn.close()
+
+
+connect()
