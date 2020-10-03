@@ -139,3 +139,6 @@ def celsius_to_kelvin(cels):
 temp_lst = [8.8, 25, 15.6]
 for temperature in temp_lst:
     print(celsius_to_kelvin(temperature))       # output would be 281.95 298.15 288.75
+    
+    
+    
